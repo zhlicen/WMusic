@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">WMusic</string>
+    <string name="title_activity_wifi">Wifi 傳輸</string>
+    <string name="wifi_not_prepared">點擊準備Wifi傳輸</string>
+    <string name="wifi_not_connected">請鏈接至Wifi局域網</string>
+    <string name="wifi_prepared_ip">準備就緒\n</string>
+    <string name="wifi_prepared">點擊停止\n傳輸過程中\n請不要關閉界面</string>
+    <string name="bluetooth_closed">藍牙已自動禁用</string>
+        <string name="bluetooth_restored">藍牙狀態已恢復</string>
+</resources>

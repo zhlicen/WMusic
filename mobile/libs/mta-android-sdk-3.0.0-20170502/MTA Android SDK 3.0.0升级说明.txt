@@ -1,0 +1,138 @@
+﻿日期：2017.5.2
+版本：V3.0.0
+
+版本关键特性：Crash模块重构升级，支持全平台全系统的java & Native捕获，支持后端实时还原，支持前台实时报表和告警监控
+
+更新注意事项：
+1. jar包更新
+	a. 下载MTA Android SDK后，请解压，并打开解压后的SDK目录。
+	b. 使用mta-android-stat-sdk-3.0.0_20170331-jdk1.6.jar替换原来的mta.jar包
+	c. 使用mid-sdk-3.71.jar替换原来的mid.jar包
+
+2. so更新
+	本次涉及到.so库文件更新，详细的更新步骤请见sdk下载包doc目录下的《MTA Android Crash接入指南》
+	必须要保证对应的so文件正确存放在对应的目录下：
+	armeabi
+	armeabi-v7a
+	arm64–v8a
+	x86
+	x86_64
+	mips
+	mips64
+
+3. Crash模块接口升级，详见《MTA Android Crash接入指南》或Demo工作的示例代码
+		StatCrashReporter crashReporter = StatCrashReporter.getStatCrashReporter(app);
+		// 开启异常时的实时上报
+		crashReporter.setEnableInstantReporting(true);
+		// 开启java异常捕获
+		crashReporter.setJavaCrashHandlerStatus(true);
+		// 开启Native c/c++，即so的异常捕获
+		// 请根据需要添加，记得so文件
+		crashReporter.setJniNativeCrashStatus(true);
+		// 添加关键日志，若crash时会把关键日志信息一起上报并展示，协助定位
+		StatTrackLog.log("init module");
+		// 添加Crash的标签，crash时会自动上报并展示，协助定位
+		StatConfig.setCrashKeyValue("myTag", "myValue");
+		// crash时的回调，业务可根据需要自选决定是否添加
+		crashReporter.addCrashCallback(new StatCrashCallback() {
+			@Override
+			public void onJniNativeCrash(String tombstoneString) { 
+				// native dump内容，包含异常信号、进程、线程、寄存器、堆栈等信息
+				// 具体请参考：Android原生的tombstone文件格式
+				log("MTA StatCrashCallback onJniNativeCrash:\n" + tombstoneString);
+			}
+			@Override
+			public void onJavaCrash(Thread thread, Throwable ex) {
+				//thread:crash线程信息
+				// ex:crash堆栈
+				log("MTA StatCrashCallback onJavaCrash:\n", ex);
+			}
+		});
+		
+4. 	SDK代码混淆保留项：
+-keep class com.tencent.stat.**  {* ;}
+-keep class com.tencent.mid.**  {* ;}
+
+
+
+
+日期：2016.12.21
+版本：V2.3.0
+更新注意事项：
+1. jar包更新
+
+使用mta-android-stat-sdk-2.3.0_20161221-jdk1.6.jar替换原来的mta.jar包
+使用mid-sdk-3.71.jar替换原来的mid.jar包
+
+2. 增加配置
+
+在 AndroidManifest.xml （application 标签下）增加provider 配置
+<provider
+      android:name="com.tencent.mid.api.MidProvider"
+      android:authorities="你的包名.TENCENT.MID.V3"
+      android:exported="true" >
+</provider>
+
+3.初始化接口
+
+// 请在初始化时调用，参数为Application或Activity或Service
+StatService.setContext(this.getApplication());
+// 自动监控Activity生命周期，可以代替之前手动调用的onResume和onPause，防止漏打点的情况
+StatService.registerActivityLifecycleCallbacks(getApplication());
+
+
+
+SDK代码混淆保留项：
+-keep class com.tencent.stat.**  {* ;}
+-keep class com.tencent.mid.**  {* ;}
+
+
+
+日期：2016.12.21
+版本：V2.3.0
+1.优化上报字段：进程名、是否在前台
+2.允许自动监听Activity
+
+
+日期：2016.01.11
+版本：V2.1.0
+1.Activity页面自动统计
+2.前后台状态的监听
+3.修复db在某种偶发条件下的查询异常
+
+
+
+
+
+
+日期：2015.08.04
+版本：V2.0.4
+1.兼容LBS SDK
+
+日期：2014.09.04
+版本：V2.0.0
+说明：
+1.全面优化CPU、内存，大幅度提升性能
+2.全面优化网络连接、数据上报稳定性等
+3.区分重要和非重要数据，做到重要数据不丢失
+4.指定日志特殊上报：appkey、实时、重要数据、渠道等
+5.优化接口的易用性
+升级提示（强烈建议以前的版本升级）：
+版本升级兼容所有旧版本接口，请根据以下步骤更新即可
+1.删除旧的mta-sdk-x.x.x.jar，并复制mta-sdk-2.0.0.jar到工程的libs目录
+2.复制mid-sdk-2.10.jar到工程的libs目录
+3..so是用于捕获捕获native crash（C/C++异常），只有需要这个功能才要复制armabi、armeabi-v7a等目录到libs目录，并在初始化时调用StatConfig.initNativeCrashReport()；
+注意：
+mta的mid-sdk-2.10.jar与信鸽的mid-2.x版本只能保留一个，但mid-1.x版本共存
+
+
+日期：2014.05.29
+版本：V1.8.0
+说明：
+1.优化上报
+2.更新mid库
+升级提示（强烈建议以前的版本升级）：
+版本升级兼容所有旧版本接口，请根据以下步骤更新即可
+1.删除旧的mta-sdk-x.x.x.jar，并复制mta-sdk-1.8.0.jar到工程的libs目录
+2.复制mid-sdk-2.10.jar到工程的libs目录
+3..so是用于捕获捕获native crash（C/C++异常），只有需要这个功能才要复制armabi、armeabi-v7a等目录到libs目录，并在初始化时调用StatConfig.initNativeCrashReport()；

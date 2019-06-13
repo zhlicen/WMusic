@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">WMusic</string>
+    <string name="title_activity_wifi">Wifi Transfer</string>
+    <string name="wifi_not_prepared">Click to prepare wifi transfer</string>
+    <string name="wifi_not_connected">Please connect to wifi network</string>
+    <string name="wifi_prepared_ip">Everything is ready\n</string>
+    <string name="wifi_prepared">Click to stop\nDo not leave this \nactivity when transferring</string>
+    <string name="bluetooth_closed">Bluetooth is disabled automatically</string>
+    <string name="bluetooth_restored">Bluetooth state is restored</string>
+</resources>

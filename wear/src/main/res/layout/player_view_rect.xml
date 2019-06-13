@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/id_player_bk"
+            />
+        <android.support.wearable.view.BoxInsetLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:id="@+id/id_player_bk_front"
+            android:background="#00000000"
+            android:padding="10dp"
+            >
+            <FrameLayout
+                app:layout_box="all"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+                <LinearLayout
+                    android:id="@+id/id_music_info_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top|center"
+                    android:orientation="vertical"
+                    android:weightSum="1">
+
+                    <TextView
+                        android:id="@+id/id_txt_media_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:fontFamily="sans-serif-condensed"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:textAlignment="center"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/id_txt_media_info"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:textAlignment="center"
+                        android:textSize="15sp" />
+
+                </LinearLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal">
+                    <Button
+                        android:id="@+id/id_btn_player_pre"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="left|center_vertical"
+                        android:background="?android:attr/selectableItemBackgroundBorderless"
+                        android:foreground="@drawable/icon_pre"
+                        android:visibility="invisible" />
+
+                    <ImageView
+                        android:id="@+id/id_btn_player_play_pause"
+                        android:layout_width="38dp"
+                        android:layout_height="38dp"
+                        android:layout_centerInParent="true"
+                        android:layout_gravity="center"
+                        android:background="?android:attr/selectableItemBackgroundBorderless"
+                        android:clickable="true"
+                        android:padding="8dp"
+                        android:foreground="@drawable/icon_loading" />
+
+                    <Button
+                        android:id="@+id/id_btn_player_next"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="right|center_vertical"
+                        android:layout_weight="0.02"
+                        android:background="?android:attr/selectableItemBackgroundBorderless"
+                        android:foreground="@drawable/icon_next"
+                        android:visibility="invisible" />
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="bottom|center"
+                    android:layout_weight="0.01"
+                    android:orientation="horizontal"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp">
+
+                    <Button
+                        android:id="@+id/id_btn_vol_down"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="left"
+                        android:background="?android:attr/selectableItemBackgroundBorderless"
+                        android:foreground="@drawable/icon_vol_down"
+                        android:visibility="invisible" />
+
+                    <Button
+                        android:id="@+id/id_btn_vol_up"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="right"
+                        android:layout_weight="0.02"
+                        android:background="?android:attr/selectableItemBackgroundBorderless"
+                        android:foreground="@drawable/icon_vol_up"
+                        android:visibility="invisible" />
+                </FrameLayout>
+            </FrameLayout>
+        </android.support.wearable.view.BoxInsetLayout>
+    </RelativeLayout>
+</LinearLayout>
