@@ -12,7 +12,7 @@
 - [youtube-play-icon](https://github.com/alxrm/youtube-play-icon)
 
 ## Notice
-You may encounter some compile issues, my caused by the following reason:
+You may encounter some compile issues, may caused by the following reason:
 - All the third-party source code is not included in this repo
 - Tokens for google service or Tencent MTA are removed
 
